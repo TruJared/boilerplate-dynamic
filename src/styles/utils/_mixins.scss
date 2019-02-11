@@ -1,0 +1,48 @@
+@mixin clip-right($deg: 2%) {
+  @if (unit($deg) == '%' and $deg >= 0 and $deg <= 100) {
+    clip-path: polygon(0% 0%, 100% #{$deg}, 100% 100%, 0% #{100% - $deg});
+  } @else {
+    @error 'must be a percent 0 - 100';
+  }
+}
+
+@mixin clip-left($deg: 2%) {
+  @if (unit($deg) == '%' and $deg >= 0 and $deg <= 100) {
+    clip-path: polygon(0% #{$deg}, 100% 0%, 100% #{100 - $deg}, 0% 100%);
+  } @else {
+    @error 'must be a percent 0 - 100';
+  }
+}
+
+// if query is number create mixin else get from mixin list
+@mixin mq($query) {
+  @if (type-of($query) == number) {
+    @media only screen and (min-width: $query) {
+      @content;
+    }
+  } @else if (map-has-key($breakpoints, $query)) {
+    @media only screen and (min-width: map-get($breakpoints, $query)) {
+      @content;
+    }
+  } @else {
+    @error value must be unit of measurement or listed in $breakpoints map;
+  }
+}
+
+@mixin line-break(
+  $margin: $spacer * 0.5,
+  // currentColor == current text color
+    $color: currentColor,
+  $height: 2px,
+  $width: 100%
+) {
+  &::after {
+    content: '';
+    display: block;
+    margin: $margin auto;
+    background: $color;
+    height: $height;
+    width: $width;
+    @content;
+  }
+}
