@@ -46,3 +46,7 @@
     @content;
   }
 }
+
+@mixin grid-span($number, $direction: row) {
+  grid-#{$direction}: span $number;
+}
