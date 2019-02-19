@@ -20,12 +20,12 @@ $greys: (
   5: darken($white, 100%)
 );
 
-// spacer == 10px (see typography)
 $spacer: 1rem;
 
 $breakpoints: (
   sm: 480px,
-  md: 768px,
-  lg: 991px,
-  xl: 1199px
+  md: 699px,
+  lg: 899px,
+  xl: 999px,
+  xxl: 1199px
 );
