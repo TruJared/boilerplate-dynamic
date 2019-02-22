@@ -20,12 +20,13 @@ $greys: (
   5: darken($white, 100%)
 );
 
-$spacer: 1rem;
-
 $breakpoints: (
-  sm: 480px,
+  xs: 349px,
+  sm: 499px,
   md: 699px,
-  lg: 899px,
-  xl: 999px,
-  xxl: 1199px
+  lg: 999px,
+  xl: 1199px,
+  xxl: 1499px
 );
+
+$spacer: 1rem;
