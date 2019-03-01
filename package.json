@@ -4,19 +4,38 @@
   "description": "",
   "main": "index.html",
   "scripts": {
-    "dev": "parcel ./src/views/index.html",
-    "build": "parcel build ./src/views/index.html"
+    "bundle": "browserify ./public/javascripts/app.js --transform [ babelify --presets [ @babel/preset-env] ]  > ./public/dist/app.js",
+    "bundle:watch": "watchify ./public/javascripts/app.js -o ./public/dist/app.js --transform [ babelify --presets [ @babel/preset-env] ]",
+    "build": "npm run bundle && npm run uglify && npm run sass && npm run postcss",
+    "burn": "rm node_modules/ -rf && npm install",
+    "postcss": "postcss ./public/dist/style.css --replace",
+    "sass": "node-sass ./public/sass/main.scss ./public/dist/style.css --output-style compressed --source-map true",
+    "sass:watch": "node-sass ./public/sass/main.scss ./public/dist/style.css --output-style compressed --source-map true --watch ./public/sass",
+    "start": "concurrently --kill-others \"npm run watch\" \"npm run sass:watch\" \"npm run bundle:watch\"",
+    "uglify": "uglifyjs ./public/dist/app.js --output ./public/dist/app.js --source-map",
+    "watch": "nodemon start.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
-    "eslint": "^5.13.0",
+    "autoprefixer": "^9.4.9",
+    "babelify": "^10.0.0",
+    "browserify": "^16.2.3",
+    "concurrently": "^4.1.0",
+    "eslint": "^5.14.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "parcel-bundler": "^1.11.0",
-    "sass": "^1.16.1"
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.10",
+    "postcss-cli": "^6.1.2",
+    "uglify-js": "^3.4.9",
+    "watchify": "^3.11.1"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
   }
 }
