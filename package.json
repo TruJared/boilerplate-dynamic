@@ -1,44 +1,26 @@
 {
   "name": "boilerplate",
   "version": "1.0.0",
-  "main": "index.html",
-  "scripts": {
-    "bundle": "browserify ./public/javascripts/app.js --transform [ babelify --presets [ @babel/preset-env] ] > ./public/dist/app.js",
-    "bundle:watch": " [-f ./public/dist/app.js.map ] || touch ./public/dist/app.js.map && rm ./public/dist/app.js.map && watchify ./public/javascripts/app.js -o ./public/dist/app.js  --transform [ babelify --presets [ @babel/preset-env] ] --debug",
-    "build": "npm run bundle && npm run uglify && npm run sass && npm run postcss",
-    "nuke": "rm node_modules/ -rf package-lock.json && npm install",
-    "postcss": "postcss ./public/dist/style.css --replace --map",
-    "sass": "node-sass ./public/sass/main.scss ./public/dist/style.css --output-style compressed --source-map true",
-    "sass:watch": "node-sass ./public/sass/main.scss ./public/dist/style.css --output-style compressed --source-map true --watch ./public/sass",
-    "start": "concurrently --kill-others \"npm run watch\" \"npm run sass:watch\" \"npm run bundle:watch\"",
-    "uglify": "uglifyjs ./public/dist/app.js -o ./public/dist/app.js -c -m --source-map",
-    "watch": "nodemon start.js"
-  },
+  "main": "index.pug",
+  "scripts": {},
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.2.2",
-    "@babel/preset-env": "^7.3.1",
-    "autoprefixer": "^9.4.9",
-    "babelify": "^10.0.0",
-    "browserify": "^16.2.3",
-    "concurrently": "^4.1.0",
-    "eslint": "^5.15.1",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0",
-    "node-sass": "^4.11.0",
-    "nodemon": "^1.18.10",
-    "postcss-cli": "^6.1.2",
-    "uglify-es": "^3.3.9",
-    "watchify": "^3.11.1"
-  },
+  "browserslist": "last 3 versions",
+  "description": "",
   "dependencies": {
-    "chalk": "^2.4.2",
-    "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "request": "^2.88.0"
+    "body-parser": "1.17.1",
+    "dotenv": "4.0.0",
+    "express": "4.15.2",
+    "parcel-bundler": "^1.12.3",
+    "pug": "2.0.0-beta6"
   },
-  "description": ""
+  "devDependencies": {
+    "autoprefixer": "6.7.7",
+    "concurrently": "3.4.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.18.0",
+    "nodemon": "^1.18.3"
+  }
 }
