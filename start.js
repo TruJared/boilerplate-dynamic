@@ -1,11 +1,19 @@
-const express = require('express');
-const path = require('path');
+// const mongoose = require('mongoose');
 
-const app = express();
+// // import environmental variables
+// require('dotenv').config({ path: 'variables.env' });
 
-// by default is set up to serve static
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'views')));
+// // Connect to Database and handle any bad connections
+// mongoose.connect(process.env.DATABASE);
+// mongoose.connection.on('error', err => {
+//   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
+// });
+
+// import models -> creates a Singleton
+require('./models/Demo');
+
+// Start our app!
+const app = require('./app');
 
 app.set('port', process.env.PORT || 7777);
 const server = app.listen(app.get('port'), () => {

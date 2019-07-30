@@ -2,7 +2,12 @@
   "name": "boilerplate",
   "version": "1.0.0",
   "main": "index.pug",
-  "scripts": {},
+  "scripts": {
+    "nuke": "rm package-lock.json node_modules .cache -rf && npm i",
+    "prod": "parcel build ./public/javascripts/main.js --out-dir ./public/dist && node ./start.js",
+    "start": "concurrently \"npm run watch\" \"parcel ./public/javascripts/main.js --out-dir ./public/dist\" --names \"💻,📦\" --prefix name ",
+    "watch": "nodemon ./start.js --ignore public/"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -12,6 +17,8 @@
     "body-parser": "1.17.1",
     "dotenv": "4.0.0",
     "express": "4.15.2",
+    "mongoose": "^5.6.7",
+    "mongoose-mongodb-errors": "0.0.2",
     "parcel-bundler": "^1.12.3",
     "pug": "2.0.0-beta6"
   },
@@ -19,8 +26,8 @@
     "autoprefixer": "6.7.7",
     "concurrently": "3.4.0",
     "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.18.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2",
     "nodemon": "^1.18.3"
   }
 }
